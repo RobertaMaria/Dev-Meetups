@@ -1,6 +1,7 @@
 package br.com.alura.meetups
 
 import android.app.Application
+import br.com.alura.meetups.di.preferencesModule
 //import br.com.alura.meetups.di.appModules
 import br.com.alura.meetups.di.repositoryModule
 import br.com.alura.meetups.di.retrofitModule
@@ -17,6 +18,7 @@ class AppApplication : Application() {
             modules(retrofitModule)
             modules(viewModelModule)
             modules(repositoryModule)
+            modules(preferencesModule)
         }
     }
 

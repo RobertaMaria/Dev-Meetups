@@ -1,5 +1,6 @@
 package br.com.alura.meetups.di
 
+import br.com.alura.meetups.preferences.FirebaseTokenPreferences
 import br.com.alura.meetups.repository.DispositivoRepotisitory
 import br.com.alura.meetups.repository.EventoRepository
 import br.com.alura.meetups.ui.viewmodel.DetalhesEventoViewModel
@@ -16,7 +17,7 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import java.util.Collections.list
 
-private const val URL_BASE = "http://192.168.0.105:8080/api/"
+private const val URL_BASE = "http://192.168.0.102:8080/api/"
 
 val retrofitModule = module {
     single<Retrofit> {
@@ -47,7 +48,11 @@ val viewModelModule = module {
 
 val repositoryModule = module {
     single<EventoRepository> { EventoRepository(get()) }
-    single<DispositivoRepotisitory> {DispositivoRepotisitory(get()) }
+    single<DispositivoRepotisitory> {DispositivoRepotisitory(get(), get())}
+}
+
+val preferencesModule = module {
+    single<FirebaseTokenPreferences> {FirebaseTokenPreferences(get())}
 }
 
 //val appModules = listof(
