@@ -9,6 +9,9 @@ import androidx.navigation.fragment.findNavController
 import br.com.alura.meetups.NavGraphDirections
 import br.com.alura.meetups.R
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.iid.FirebaseInstanceId
+import com.google.firebase.messaging.FirebaseMessaging
+import kotlin.concurrent.thread
 
 open class BaseFragment(layout: Int) : Fragment(layout) {
 
@@ -37,6 +40,9 @@ open class BaseFragment(layout: Int) : Fragment(layout) {
         when (item.itemId) {
             R.id.lista_eventos_menu_sair -> {
                 FirebaseAuth.getInstance().signOut()
+                thread {
+                    FirebaseInstanceId.getInstance().deleteInstanceId()
+                }
                 vaiParaInicio()
             }
         }
