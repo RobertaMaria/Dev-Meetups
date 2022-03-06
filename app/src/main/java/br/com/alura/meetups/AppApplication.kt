@@ -1,11 +1,10 @@
 package br.com.alura.meetups
 
 import android.app.Application
-import br.com.alura.meetups.di.preferencesModule
+import br.com.alura.meetups.di.*
+import br.com.alura.meetups.notifications.CanalPrincipal
+import org.koin.android.ext.android.inject
 //import br.com.alura.meetups.di.appModules
-import br.com.alura.meetups.di.repositoryModule
-import br.com.alura.meetups.di.retrofitModule
-import br.com.alura.meetups.di.viewModelModule
 import org.koin.android.ext.koin.androidContext
 import org.koin.core.context.startKoin
 
@@ -19,7 +18,12 @@ class AppApplication : Application() {
             modules(viewModelModule)
             modules(repositoryModule)
             modules(preferencesModule)
+            modules(notificacaoModule)
         }
+
+        val canalPrincipal : CanalPrincipal by inject()
+        canalPrincipal.criaCanal()
     }
+
 
 }
